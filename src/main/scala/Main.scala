@@ -25,4 +25,5 @@ object Main extends Staging {
       |ON t.service_id = c.service_id
       |FULL OUTER JOIN fall2019_snehith.ext_frequencies f
       |ON t.trip_id = f.trip_id""".stripMargin
+
 }
