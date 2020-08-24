@@ -39,6 +39,23 @@ class ExtTables extends Staging {
         |"skip.header.line.count" = "1",
         |"serialization.null.format" = "")""".stripMargin
 
+    stmt.execute("DROP TABLE IF EXISTS fall2019_srujan.ext_calendar_dates")
+    stmt execute
+      """CREATE EXTERNAL TABLE fall2019_srujan.ext_calendar_dates (
+        |service_id       STRING,
+        |date             INT,
+        |exception_type   INT
+        |)
+        |ROW FORMAT DELIMITED
+        |FIELDS TERMINATED BY ','
+        |STORED AS TEXTFILE
+        |LOCATION '/user/fall2019/srujan/project4/calendar_dates'
+        |TBLPROPERTIES (
+        |"skip.header.line.count" = "1",
+        |"serialization.null.format" = "")""".stripMargin
+
+    println("ext_calendar_dates TABLE was CREATED")
+
 
   }
 }
