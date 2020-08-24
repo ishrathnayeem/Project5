@@ -1,12 +1,14 @@
+import java.io.ByteArrayInputStream
 import java.sql.{Connection, DriverManager, Statement}
 
 import com.amazonaws.regions.Regions
+import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 
 trait Staging extends App {
-<<<<<<< HEAD
 
-  val s3client:AmazonS3 = AmazonS3ClientBuilder
+
+  val s3Client:AmazonS3 = AmazonS3ClientBuilder
     .standard()
     //.withCredentials(new AWSStaticCredentialsProvider(credentials))
     .withRegion(Regions.US_EAST_1)
@@ -24,13 +26,13 @@ trait Staging extends App {
   val trips=s3Client.putObject(bucketname,tripsname,empty,meta)
   val frequencies = s3Client.putObject(bucketname,frequenciesname,empty,meta)
   val calendar_dates = s3Client.putObject(bucketname,calendar_datename,empty,meta)
-=======
+
   val s3client: AmazonS3 = AmazonS3ClientBuilder
     .standard()
     //.withCredentials(new AWSStaticCredentialsProvider(credentials))
     .withRegion(Regions.US_EAST_1)
     .build()
->>>>>>> d56f9b1fffdf66a5d9fe5f6ae88ac0afe35b2578
+
 
   val driverName: String = "com.simba.athena.jdbc.Driver"
   Class.forName(driverName)
@@ -40,17 +42,7 @@ trait Staging extends App {
       "AwsCredentialsProviderArguments=default;")
 
   val stmt: Statement = connection.createStatement()
-  val bucketname = "course8-aws"
-  val folder= "assignment8"
 
-<<<<<<< HEAD
-=======
-  val tripsname = "assignment1/trips/"
-  val frequenciesname = "assignment1/frequencies/"
-  val calendar_datename = "assignment1/calendar_dates/"
-  val tripfile = "assignment1/trips/trips.txt"
-  val frequencyfile= "assignment1/frequenciesname/frequencies.txt"
-  val calendardatesfile ="assignment1/calenda_dates/calendar_dates.txt"
   val tloc= "/home/snehith/Documents/stm/trips.txt"
   val floc ="/home/snehith/Documents/stm/frequencies.txt"
   val caloc = "//home/snehith/Documents/stm/calendar_dates.txt"
@@ -61,5 +53,5 @@ trait Staging extends App {
     println("deldeted")
   }
 
->>>>>>> d56f9b1fffdf66a5d9fe5f6ae88ac0afe35b2578
+
 }

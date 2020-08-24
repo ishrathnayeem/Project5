@@ -49,7 +49,7 @@ class ExtTables extends Staging {
         |ROW FORMAT DELIMITED
         |FIELDS TERMINATED BY ','
         |STORED AS TEXTFILE
-        |LOCATION 's3://stmmontreal/calender_dates'
+        |LOCATION 's3://stmmontreal/calender_dates's
         |TBLPROPERTIES (
         |"skip.header.line.count" = "1",
         |"serialization.null.format" = "")""".stripMargin
