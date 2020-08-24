@@ -41,8 +41,8 @@ trait Staging extends App {
       "AwsCredentialsProviderClass=com.simba.athena.amazonaws.auth.profile.ProfileCredentialsProvider;" +
       "AwsCredentialsProviderArguments=default;")
   def upload(): Unit ={
-    s3client.putObject(bucketname,trips_dir,new File(trips_dir))
-    s3client.putObject(bucketname,frequencies_dir,new File(frequencies_dir))
-    s3client.putObject(bucketname,calendar_date_dir,new File(calender_dat_loc))
+    s3Client.putObject(bucketname,trips_dir,new File(trips_loc))
+    s3Client.putObject(bucketname,frequencies_dir,new File(frequencies_loc))
+    s3Client.putObject(bucketname,calendar_date_dir,new File(calender_dat_loc))
   }
 }
