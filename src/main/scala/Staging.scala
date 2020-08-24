@@ -6,7 +6,8 @@ import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 
 trait Staging extends App {
   //connecting to s3 bucket
-  val s3Client:AmazonS3 = AmazonS3ClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
+  val s3Client:AmazonS3 = AmazonS3ClientBuilder
+    .standard().withRegion(Regions.US_EAST_1).build()
 
   val bucketname=""
   val filepath = "/home/ishrath/course8/"
@@ -42,5 +43,20 @@ trait Staging extends App {
       "AwsCredentialsProviderArguments=default;")
 
   val stmt: Statement = connection.createStatement()
+<<<<<<< HEAD
 
+=======
+  def Staging() {
+
+    s3client.createBucket(bucketname)
+    val meta = new ObjectMetadata()
+    meta.setContentLength(0)
+    val empty = new ByteArrayInputStream(new Array[Byte](0))
+    s3client.putObject(bucketname, folder, empty, meta)
+    val frequencies = s3client.putObject(bucketname, frequenciesname, empty, meta)
+    val calendar_dates = s3client.putObject(bucketname, calendar_datename, empty, meta)
+
+  }
+  
+>>>>>>> 352f73c7ce4774f59fa83e2e5a8d4fecf49b3594
 }
