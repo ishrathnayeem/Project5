@@ -1,4 +1,5 @@
-class ExtTables {
+
+class ExtTables extends Staging {
   def CreateTables() {
     stmt execute """DROP TABLE IF EXISTS ext_trips"""
     stmt execute """DROP TABLE IF EXISTS ext_frequencies"""
@@ -18,10 +19,26 @@ class ExtTables {
         |ROW FORMAT DELIMITED
         |FIELDS TERMINATED BY ','
         |STORED AS TEXTFILE
-        |LOCATION '/user/fall2019/ishrath/project4/trips'
+        |LOCATION 's3://course8-aws1/assignment1/trips/'
         |TBLPROPERTIES (
         | "skip.header.line.count" = "1",
         |"serialization.null.format" = "")""".stripMargin
 
     println("ext_trips TABLE was CREATED")
+    stmt execute
+      """CREATE EXTERNAL TABLE fall2019_snehith.ext_calendar_dates (
+        |service_id       STRING,
+        |date             INT,
+        |exception_type   INT
+        |)
+        |ROW FORMAT DELIMITED
+        |FIELDS TERMINATED BY ','
+        |STORED AS TEXTFILE
+        |LOCATION 's3://course8/assignment1/calendar_dates/'
+        |TBLPROPERTIES (
+        |"skip.header.line.count" = "1",
+        |"serialization.null.format" = "")""".stripMargin
+
+
+  }
 }
