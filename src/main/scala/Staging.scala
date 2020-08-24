@@ -7,7 +7,6 @@ import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 
 trait Staging extends App {
 
-
   val s3Client:AmazonS3 = AmazonS3ClientBuilder
     .standard()
     //.withCredentials(new AWSStaticCredentialsProvider(credentials))
@@ -63,8 +62,6 @@ trait Staging extends App {
     val frequencies = s3client.putObject(bucketname, frequenciesname, empty, meta)
     val calendar_dates = s3client.putObject(bucketname, calendar_datename, empty, meta)
 
-
   }
-
 
 }
