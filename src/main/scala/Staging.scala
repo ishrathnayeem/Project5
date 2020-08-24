@@ -46,11 +46,18 @@ trait Staging extends App {
   val tloc= "/home/snehith/Documents/stm/trips.txt"
   val floc ="/home/snehith/Documents/stm/frequencies.txt"
   val caloc = "//home/snehith/Documents/stm/calendar_dates.txt"
-  if (s3client.doesBucketExistV2(bucketname))
-  {
-    println("already exist")
-    s3client.deleteBucket(bucketname)
-    println("deldeted")
+  def Staging() {
+
+    s3client.createBucket(bucketname)
+    val meta = new ObjectMetadata()
+    meta.setContentLength(0)
+    val empty = new ByteArrayInputStream(new Array[Byte](0))
+    s3client.putObject(bucketname, folder1, empty, meta)
+    val trips = s3client.putObject(bucketname, tripsname, empty, meta)
+    val frequencies = s3client.putObject(bucketname, frequenciesname, empty, meta)
+    val calendar_dates = s3client.putObject(bucketname, calendar_datename, empty, meta)
+
+
   }
 
 
