@@ -26,6 +26,9 @@ trait Staging extends App {
 
   //creating directories in the bucket
   s3Client.putObject(bucketname,folder1,empty,meta)
+  def staging: Unit ={
+
+  }
   val trips              =    s3Client.putObject(bucketname,trips_dir,empty,meta)
   val frequencies        =    s3Client.putObject(bucketname,frequencies_dir,empty,meta)
   val calendar_dates     =    s3Client.putObject(bucketname,calendar_date_dir,empty,meta)
@@ -40,9 +43,4 @@ trait Staging extends App {
 
   val stmt: Statement = connection.createStatement()
 
-
-  def Staging() {
-
-  }
-  
 }
