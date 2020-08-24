@@ -26,7 +26,7 @@ class ExtTables extends Staging {
 
     println("ext_trips TABLE was CREATED")
     stmt execute
-      """CREATE EXTERNAL TABLE fall2019_snehith.ext_calendar_dates (
+      """CREATE EXTERNAL TABLE fall2019_ishrath.ext_calendar_dates (
         |service_id       STRING,
         |date             INT,
         |exception_type   INT
@@ -39,9 +39,9 @@ class ExtTables extends Staging {
         |"skip.header.line.count" = "1",
         |"serialization.null.format" = "")""".stripMargin
 
-    stmt.execute("DROP TABLE IF EXISTS fall2019_srujan.ext_calendar_dates")
+    stmt.execute("DROP TABLE IF EXISTS fall2019_ishrath.ext_calendar_dates")
     stmt execute
-      """CREATE EXTERNAL TABLE fall2019_srujan.ext_calendar_dates (
+      """CREATE EXTERNAL TABLE fall2019_ishrath.ext_calendar_dates (
         |service_id       STRING,
         |date             INT,
         |exception_type   INT

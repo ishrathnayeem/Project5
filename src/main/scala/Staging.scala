@@ -6,13 +6,14 @@ import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 
 trait Staging extends App {
-  val s3Client: AmazonS3 = AmazonS3ClientBuilder
+
+  val s3client:AmazonS3 = AmazonS3ClientBuilder
     .standard()
     //.withCredentials(new AWSStaticCredentialsProvider(credentials))
     .withRegion(Regions.US_EAST_1)
-    .build()
+    .build();
   val bucketname=""
-  val filepath = "/home/snehith/course8/"
+  val filepath = "/home/ishrath/course8/"
   val folder1 ="assignment1/"
   val meta = new ObjectMetadata()
   meta.setContentLength(0)
@@ -33,9 +34,5 @@ trait Staging extends App {
       "AwsCredentialsProviderArguments=default;")
 
   val stmt: Statement = connection.createStatement()
-
-
-
-
 
 }
