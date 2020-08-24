@@ -33,7 +33,6 @@ trait Staging extends App {
     .withRegion(Regions.US_EAST_1)
     .build()
 
-
   val driverName: String = "com.simba.athena.jdbc.Driver"
   Class.forName(driverName)
   val connection: Connection = DriverManager
@@ -42,6 +41,13 @@ trait Staging extends App {
       "AwsCredentialsProviderArguments=default;")
 
   val stmt: Statement = connection.createStatement()
+
+  val tripsname = "assignment1/trips/"
+  val frequenciesname = "assignment1/frequencies/"
+  val calendar_datename = "assignment1/calendar_dates/"
+  val tripfile = "assignment1/trips/trips.txt"
+  val frequencyfile= "assignment1/frequenciesname/frequencies.txt"
+  val calendardatesfile ="assignment1/calenda_dates/calendar_dates.txt"
 
   val tloc= "/home/snehith/Documents/stm/trips.txt"
   val floc ="/home/snehith/Documents/stm/frequencies.txt"
