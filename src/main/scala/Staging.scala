@@ -11,8 +11,7 @@ trait Staging extends App {
     .standard().withRegion(Regions.US_EAST_1).build()
 
   val bucketname = "course8-aws"
-  val filepath = "/home/snehith/course8/"
-  val folder1 = "assignment1/"
+
 
   val meta = new ObjectMetadata()
   meta.setContentLength(0)

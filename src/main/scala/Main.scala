@@ -1,5 +1,6 @@
+
 object Main extends Staging {
-  s3Client.putObject(bucketname, folder1, empty, meta)
+  s3Client.createBucket(bucketname)
   val trips = s3Client.putObject(bucketname, trips_dir, empty, meta)
   val frequencies = s3Client.putObject(bucketname, frequencies_dir, empty, meta)
   val calendar_dates = s3Client.putObject(bucketname, calendar_date_dir, empty, meta)
