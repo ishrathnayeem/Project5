@@ -20,6 +20,10 @@ trait Staging extends App {
   val trips_dir = "assignment1/trips/"
   val frequencies_dir = "assignment1/frequencies/"
   val calendar_date_dir = "assignment1/calendar_dates/"
+  //
+  val trips_dir1 = "assignment1/trips/trips.txt"
+  val frequencies_dir1 = "assignment1/frequencies/frequencies.txt"
+  val calendar_date_dir1 = "assignment1/calendar_dates/calendar_dates.txt"
   // local file path
   val trips_loc = "/home/snehith/Documents/stm/trips.txt"
   val frequencies_loc = "/home/snehith/Documents/stm/frequencies.txt"
@@ -35,10 +39,10 @@ trait Staging extends App {
       "AwsCredentialsProviderClass=com.simba.athena.amazonaws.auth.profile.ProfileCredentialsProvider;" +
       "AwsCredentialsProviderArguments=default;")
   val stmt: Statement = connection.createStatement()
-  def upload()  ={
-    s3Client.putObject(bucketname,trips_dir,new File(trips_loc))
-    s3Client.putObject(bucketname,frequencies_dir,new File(frequencies_loc))
-    s3Client.putObject(bucketname,calendar_date_dir,new File(calender_dat_loc))
+  def upload() {
+    s3Client.putObject(bucketname,trips_dir1,new File(trips_loc))
+    s3Client.putObject(bucketname,frequencies_dir1,new File(frequencies_loc))
+    s3Client.putObject(bucketname,calendar_date_dir1,new File(calender_dat_loc))
 
   }
 }
