@@ -10,8 +10,8 @@ trait Staging extends App {
   val s3Client: AmazonS3 = AmazonS3ClientBuilder
     .standard().withRegion(Regions.US_EAST_1).build()
 
-  val bucketname = ""
-  val filepath = "/home/ishrath/course8/"
+  val bucketname = "course8-aws"
+  val filepath = "/home/snehith/course8/"
   val folder1 = "assignment1/"
 
   val meta = new ObjectMetadata()
@@ -23,16 +23,11 @@ trait Staging extends App {
   val calendar_date_dir = "assignment1/calendar_dates/"
   // local file path
   val trips_loc = "/home/snehith/Documents/stm/trips.txt"
-  val frequencies_loc = s"/home/snehith/Documents/stm/frequencies.txt"
+  val frequencies_loc = "/home/snehith/Documents/stm/frequencies.txt"
   val calender_dat_loc = "//home/snehith/Documents/stm/calendar_dates.txt"
 
   //creating directories in the bucket
-  def staging: Unit = {
-    s3Client.putObject(bucketname, folder1, empty, meta)
-    val trips = s3Client.putObject(bucketname, trips_dir, empty, meta)
-    val frequencies = s3Client.putObject(bucketname, frequencies_dir, empty, meta)
-    val calendar_dates = s3Client.putObject(bucketname, calendar_date_dir, empty, meta)
-  }
+  
   //connecting to athena
   val driverName: String = "com.simba.athena.jdbc.Driver"
   Class.forName(driverName)
@@ -40,9 +35,11 @@ trait Staging extends App {
     .getConnection("jdbc:awsathena://AwsRegion=us-east-1;S3OutputLocation=s3://course8-aws/;" +
       "AwsCredentialsProviderClass=com.simba.athena.amazonaws.auth.profile.ProfileCredentialsProvider;" +
       "AwsCredentialsProviderArguments=default;")
-  def upload(): Unit ={
+  val stmt: Statement = connection.createStatement()
+  def upload()  ={
     s3Client.putObject(bucketname,trips_dir,new File(trips_loc))
     s3Client.putObject(bucketname,frequencies_dir,new File(frequencies_loc))
     s3Client.putObject(bucketname,calendar_date_dir,new File(calender_dat_loc))
+
   }
 }
