@@ -25,7 +25,7 @@ class ExtTables extends Staging {
         | "skip.header.line.count" = "1",
         |"serialization.null.format" = "")""".stripMargin
 
-    println("ext_routess TABLE was CREATED")
+    println("ext_routes TABLE was CREATED")
     stmt execute
       """CREATE EXTERNAL TABLE fall2019_snehith.ext_calendar_dates (
         |service_id       STRING,
@@ -39,9 +39,24 @@ class ExtTables extends Staging {
         |TBLPROPERTIES (
         |"skip.header.line.count" = "1",
         |"serialization.null.format" = "")""".stripMargin
+    println("ext_calendar_dates TABLE was CREATED\n")
 
+    stmt.execute("DROP TABLE IF EXISTS fall2019_srujan.ext_frequencies")
+    stmt execute
+      """CREATE EXTERNAL TABLE fall2019_srujan.ext_frequencies (
+        |trip_id        STRING,
+        |start_time     INT,
+        |end_time       INT,
+        |headway_secs   INT
+        |)
+        |ROW FORMAT DELIMITED
+        |FIELDS TERMINATED BY ','
+        |STORED AS TEXTFILE
+        |LOCATION 's3://user/fall2019/srujan/project4/frequencies'
+        |TBLPROPERTIES (
+        |"skip.header.line.count" = "1",
+        |"serialization.null.format" = "")""".stripMargin
 
-
-
+    println("ext_frequencies TABLE was CREATED\n")
   }
 }
