@@ -1,5 +1,6 @@
-import java.io.ByteArrayInputStream
+import java.io.{ByteArrayInputStream, File}
 import java.sql.{Connection, DriverManager, Statement}
+
 import com.amazonaws.regions.Regions
 import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
@@ -39,5 +40,9 @@ trait Staging extends App {
     .getConnection("jdbc:awsathena://AwsRegion=us-east-1;S3OutputLocation=s3://course8-aws/;" +
       "AwsCredentialsProviderClass=com.simba.athena.amazonaws.auth.profile.ProfileCredentialsProvider;" +
       "AwsCredentialsProviderArguments=default;")
-
+  def upload(): Unit ={
+    s3client.putObject(bucketname,trips_dir,new File(trips_dir))
+    s3client.putObject(bucketname,frequencies_dir,new File(frequencies_dir))
+    s3client.putObject(bucketname,calendar_date_dir,new File(calender_dat_loc))
+  }
 }
