@@ -18,9 +18,13 @@ trait Staging extends App {
       "AwsCredentialsProviderArguments=default;")
 
   val stmt: Statement = connection.createStatement()
-
-
-
-
+  val bucketname = "course8-aws"
+  val folder= "assignment8"
+  if (s3client.doesBucketExistV2(bucketname))
+  {
+    println("already exist")
+    s3client.deleteBucket(bucketname)
+    println("deldeted")
+  }
 
 }
