@@ -12,9 +12,9 @@ object Main extends Staging {
   println("deleted folder\n")
   create.upload()
   println("uploaded files\n")
-  stmt.execute("DROP TABLE IF EXISTS fall2019_ishrath.enrichedTrip")
+  stmt.execute("DROP TABLE IF EXISTS fall2019_ishrath.enriched_trip")
   stmt execute
-    """CREATE table fall2019_ishrath.enrichedTrip
+    """CREATE table fall2019_ishrath.enriched_trip
       |WITH (format='PARQUET',
       |parquet_compression='SNAPPY',
       |partitioned_by=Array['wheelchair_accessible'],
